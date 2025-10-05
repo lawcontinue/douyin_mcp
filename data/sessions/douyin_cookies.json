@@ -1,0 +1,65 @@
+[
+  {
+    "name": "sessionid",
+    "value": "70183f8d161478a2c5e98c680b998d21",
+    "domain": ".douyin.com",
+    "path": "/",
+    "secure": true,
+    "httpOnly": true,
+    "sameSite": "None"
+  },
+  {
+    "name": "ttwid",
+    "value": "1%7CaGm9Jyj19RpJgm6R15v27f9aMXZoNFtg9ic8wOgmKMI%7C1759427744%7Ceab642d4713f1fe296f0e4f12295496c92ec62e38b5ce38bda7d7d47803e5969",
+    "domain": ".douyin.com",
+    "path": "/",
+    "secure": true,
+    "httpOnly": true,
+    "sameSite": "None"
+  },
+  {
+    "name": "tt_webid",
+    "value": "1%7CaGm9Jyj19RpJgm6R15v27f9aMXZoNFtg9ic8wOgmKMI%7C1759427744%7Ceab642d4713f1fe296f0e4f12295496c92ec62e38b5ce38bda7d7d47803e5969",
+    "domain": ".douyin.com",
+    "path": "/",
+    "secure": true,
+    "httpOnly": false,
+    "sameSite": "None"
+  },
+  {
+    "name": "passport_csrf_token",
+    "value": "91b76b11353cff9a9223c137fb8cd41e",
+    "domain": ".douyin.com",
+    "path": "/",
+    "secure": true,
+    "httpOnly": false,
+    "sameSite": "None"
+  },
+  {
+    "name": "sid_guard",
+    "value": "70183f8d161478a2c5e98c680b998d21%7C1759427737%7C5184000%7CMon%2C+01-Dec-2025+17%3A55%3A37+GMT",
+    "domain": ".douyin.com",
+    "path": "/",
+    "secure": true,
+    "httpOnly": true,
+    "sameSite": "None"
+  },
+  {
+    "name": "uid_tt",
+    "value": "0bea251fbde300654cae2ce83b68f479",
+    "domain": ".douyin.com",
+    "path": "/",
+    "secure": true,
+    "httpOnly": false,
+    "sameSite": "None"
+  },
+  {
+    "name": "sid_tt",
+    "value": "70183f8d161478a2c5e98c680b998d21",
+    "domain": ".douyin.com",
+    "path": "/",
+    "secure": true,
+    "httpOnly": true,
+    "sameSite": "None"
+  }
+]

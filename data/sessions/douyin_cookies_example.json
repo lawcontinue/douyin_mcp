@@ -1,0 +1,34 @@
+[
+  {
+    "name": "sessionid",
+    "value": "YOUR_SESSIONID_HERE",
+    "domain": ".douyin.com",
+    "path": "/",
+    "secure": true,
+    "httpOnly": true
+  },
+  {
+    "name": "tt_webid",
+    "value": "YOUR_TT_WEBID_HERE",
+    "domain": ".douyin.com",
+    "path": "/",
+    "secure": true,
+    "httpOnly": false
+  },
+  {
+    "name": "ttwid",
+    "value": "YOUR_TTWID_HERE",
+    "domain": ".douyin.com",
+    "path": "/",
+    "secure": true,
+    "httpOnly": false
+  },
+  {
+    "name": "passport_csrf_token",
+    "value": "YOUR_CSRF_TOKEN_HERE",
+    "domain": ".douyin.com",
+    "path": "/",
+    "secure": true,
+    "httpOnly": false
+  }
+]

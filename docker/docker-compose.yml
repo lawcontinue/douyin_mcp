@@ -1,0 +1,135 @@
+version: '3.8'
+
+services:
+  # 主应用服务
+  douyin-mcp:
+    build:
+      context: ..
+      dockerfile: docker/Dockerfile
+    container_name: douyin-lawyer-mcp
+    restart: unless-stopped
+    ports:
+      - "8000:8000"
+    environment:
+      - DEBUG=False
+      - ENVIRONMENT=production
+      - LOG_LEVEL=INFO
+      - DATABASE_URL=postgresql://douyin_user:douyin_pass@postgres:5432/douyin_lawyer_mcp
+      - REDIS_URL=redis://redis:6379/0
+      - BROWSER_HEADLESS=true
+      - ENABLE_REDIS_CACHE=true
+    volumes:
+      - ../data:/app/data
+      - ../logs:/app/logs
+      - browser_data:/app/browser_data
+    depends_on:
+      - postgres
+      - redis
+    networks:
+      - douyin-network
+
+  # PostgreSQL数据库
+  postgres:
+    image: postgres:15-alpine
+    container_name: douyin-postgres
+    restart: unless-stopped
+    environment:
+      POSTGRES_DB: douyin_lawyer_mcp
+      POSTGRES_USER: douyin_user
+      POSTGRES_PASSWORD: douyin_pass
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+      - ./init.sql:/docker-entrypoint-initdb.d/init.sql
+    ports:
+      - "5432:5432"
+    networks:
+      - douyin-network
+
+  # Redis缓存
+  redis:
+    image: redis:7-alpine
+    container_name: douyin-redis
+    restart: unless-stopped
+    command: redis-server --appendonly yes --requirepass redis_pass
+    volumes:
+      - redis_data:/data
+    ports:
+      - "6379:6379"
+    networks:
+      - douyin-network
+
+  # Nginx代理 (可选)
+  nginx:
+    image: nginx:alpine
+    container_name: douyin-nginx
+    restart: unless-stopped
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/nginx.conf
+      - ./ssl:/etc/nginx/ssl
+    depends_on:
+      - douyin-mcp
+    networks:
+      - douyin-network
+    profiles:
+      - proxy
+
+  # Prometheus监控 (可选)
+  prometheus:
+    image: prom/prometheus:latest
+    container_name: douyin-prometheus
+    restart: unless-stopped
+    ports:
+      - "9090:9090"
+    volumes:
+      - ./prometheus.yml:/etc/prometheus/prometheus.yml
+      - prometheus_data:/prometheus
+    command:
+      - '--config.file=/etc/prometheus/prometheus.yml'
+      - '--storage.tsdb.path=/prometheus'
+      - '--web.console.libraries=/etc/prometheus/console_libraries'
+      - '--web.console.templates=/etc/prometheus/consoles'
+      - '--storage.tsdb.retention.time=200h'
+      - '--web.enable-lifecycle'
+    networks:
+      - douyin-network
+    profiles:
+      - monitoring
+
+  # Grafana仪表板 (可选)
+  grafana:
+    image: grafana/grafana:latest
+    container_name: douyin-grafana
+    restart: unless-stopped
+    ports:
+      - "3000:3000"
+    environment:
+      - GF_SECURITY_ADMIN_PASSWORD=admin123
+    volumes:
+      - grafana_data:/var/lib/grafana
+      - ./grafana/dashboards:/etc/grafana/provisioning/dashboards
+      - ./grafana/datasources:/etc/grafana/provisioning/datasources
+    depends_on:
+      - prometheus
+    networks:
+      - douyin-network
+    profiles:
+      - monitoring
+
+networks:
+  douyin-network:
+    driver: bridge
+
+volumes:
+  postgres_data:
+    driver: local
+  redis_data:
+    driver: local
+  browser_data:
+    driver: local
+  prometheus_data:
+    driver: local
+  grafana_data:
+    driver: local

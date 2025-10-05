@@ -1,0 +1,26 @@
+[
+  {
+    "name": "sessionid",
+    "value": "replace_with_real_sessionid",
+    "domain": ".douyin.com",
+    "path": "/",
+    "secure": true,
+    "httpOnly": true
+  },
+  {
+    "name": "tt_webid",
+    "value": "replace_with_real_webid",
+    "domain": ".douyin.com",
+    "path": "/",
+    "secure": true,
+    "httpOnly": false
+  },
+  {
+    "name": "ttwid",
+    "value": "replace_with_real_ttwid",
+    "domain": ".douyin.com",
+    "path": "/",
+    "secure": true,
+    "httpOnly": true
+  }
+]

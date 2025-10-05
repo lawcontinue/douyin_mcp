@@ -1,0 +1,26 @@
+[
+  {
+    "name": "sessionid",
+    "value": "your_session_id_here",
+    "domain": ".douyin.com",
+    "path": "/",
+    "secure": true,
+    "httpOnly": true
+  },
+  {
+    "name": "tt_webid",
+    "value": "your_webid_here",
+    "domain": ".douyin.com",
+    "path": "/",
+    "secure": true,
+    "httpOnly": false
+  },
+  {
+    "name": "ttwid",
+    "value": "your_ttwid_here",
+    "domain": ".douyin.com",
+    "path": "/",
+    "secure": true,
+    "httpOnly": true
+  }
+]

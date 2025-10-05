@@ -1,0 +1,13 @@
+{
+  "mcpServers": {
+    "douyin-lawyer-mcp": {
+      "command": "python",
+      "args": ["start_mcp_cursor.py"],
+      "cwd": "D:\\cloud\\findlawwanted\\douyin-comment-mcp",
+      "env": {
+        "PYTHONPATH": "D:\\cloud\\findlawwanted\\douyin-comment-mcp",
+        "API_PORT": "8002"
+      }
+    }
+  }
+}
